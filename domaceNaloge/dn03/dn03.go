@@ -49,7 +49,7 @@ func (i izdelek) obdelaj(idNarocila int, kanalZaNapake chan error) error {
 	promet += i.cena
 	stNarocil++
 	lock.Unlock()
-	fmt.Printf("Številka naročila: %d\nIme izdelka: %s\nCena: %.2f €\nTeza: %.2f kg\n\n", stNarocil, i.imeIzdelka, i.cena, i.teza)
+	fmt.Printf("Številka naročila: %d\nIme izdelka: %s\nCena: %.2f €\nTeza: %.2f kg\n\n", idNarocila, i.imeIzdelka, i.cena, i.teza)
 	kanalZaNapake <- nil
 	return nil
 }
@@ -67,7 +67,7 @@ func (k eknjiga) obdelaj(idNarocila int, kanalZaNapake chan error) error {
 	promet += k.cena
 	stNarocil++
 	lock.Unlock()
-	fmt.Printf("Številka naročila: %d\nNaslov knjige: %s\nCena: %.2f\n\n", stNarocil, k.naslovKnjige, k.cena)
+	fmt.Printf("Številka naročila: %d\nNaslov knjige: %s\nCena: %.2f €\n\n", idNarocila, k.naslovKnjige, k.cena)
 	kanalZaNapake <- nil
 	return nil
 }
@@ -75,8 +75,8 @@ func (k eknjiga) obdelaj(idNarocila int, kanalZaNapake chan error) error {
 func (s spletniTecaj) obdelaj(idNarocila int, kanalZaNapake chan error) error {
 	defer wg.Done()
 	if s.trajanjeUre < 0 {
-		kanalZaNapake <- fmt.Errorf("[NAROCILO: %d] -> Trajanje tecaja (ure) je negativno!\n", idNarocila)
-		return fmt.Errorf("Trajanje tecaja (ure) je negativno!\n") 
+		kanalZaNapake <- fmt.Errorf("[NAROCILO: %d] -> Trajanje tecaja je negativno!\n", idNarocila)
+		return fmt.Errorf("Trajanje tecaja je negativno!\n") 
 	} else if s.cenaUre < 0 {
 		kanalZaNapake <- fmt.Errorf("[NAROCILO: %d] -> Cena ure je negativna!\n", idNarocila)
 		return  fmt.Errorf("Cena ure je negativna!\n")
@@ -88,7 +88,7 @@ func (s spletniTecaj) obdelaj(idNarocila int, kanalZaNapake chan error) error {
 	promet += s.cenaUre * float64 (s.trajanjeUre)
 	stNarocil++;
 	lock.Unlock()
-	fmt.Printf("Številka naročila: %d\nIme tecaja: %s\nTrajanje tecaja (ure): %d\nCena ure: %.2f\n\n", stNarocil, s.imeTecaja, s.trajanjeUre, s.cenaUre)
+	fmt.Printf("Številka naročila: %d\nIme tecaja: %s\nTrajanje tecaja: %d h\nCena ure: %.2f €\n\n", idNarocila, s.imeTecaja, s.trajanjeUre, s.cenaUre)
 	kanalZaNapake <- nil
 	return nil
 }
@@ -107,7 +107,7 @@ func main(){
 	for idNarocila,v := range narocila {
 		wg.Add(1)
 		// err := v.obdelaj()
-		go v.obdelaj(idNarocila, kanalZaNapake)
+		go v.obdelaj(idNarocila + 1, kanalZaNapake)
 	}
 	wg.Wait()
 
@@ -120,32 +120,32 @@ func main(){
 	}
 
 	// fmt.Println(narocila)
-	fmt.Printf("--------\nPromet: %.2f\nŠtevilo naročil: %d\n--------\n", promet, stNarocil)
+	fmt.Printf("-------------------\nPromet: %.2f €\nŠtevilo naročil: %d\n-------------------\n", promet, stNarocil)
 }
 /*
-IZPIS (skrajsano):
+IZPIS: (skrajsano)
 
-Številka naročila: 2
-Naslov knjige: Zločin in kazen
-Cena: 13.23
+Številka naročila: 7
+Naslov knjige: Štoparski vodnik po galaksiji
+Cena: 15.74 €
 
 .
 .
 .
 
-Številka naročila: 3
-Ime tecaja: Vrtnarstvo v praksi
-Trajanje tecaja (ure): 10
-Cena ure: 14.99
+Številka naročila: 10
+Ime izdelka: radio
+Cena: 89.99 €
+Teza: 2.35 kg
 
-NAPAKA: [NAROCILO: 13] -> Trajanje tecaja (ure) je negativno!
+NAPAKA: [NAROCILO: 14] -> Trajanje tecaja je negativno!
 
-NAPAKA: [NAROCILO: 3] -> Cena knjige je negativna!
+NAPAKA: [NAROCILO: 4] -> Cena knjige je negativna!
 
-NAPAKA: [NAROCILO: 12] -> Ime izdelka je prazno!
+NAPAKA: [NAROCILO: 13] -> Ime izdelka je prazno!
 
---------
-Promet: 605.88
+-------------------
+Promet: 605.88 €
 Število naročil: 11
---------
+-------------------
 */
