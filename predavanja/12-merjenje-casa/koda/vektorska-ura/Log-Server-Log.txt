@@ -1,0 +1,8 @@
+Server {"Server":1}
+Initialization Complete
+Server {"Client-hpc-login3.arnes.si-229326":2, "Server":2}
+INFO Received Message from client
+Server {"Client-hpc-login3.arnes.si-229326":2, "Server":3}
+INFO Server preparing reply
+Server {"Client-hpc-login3.arnes.si-229326":2, "Server":4}
+INFO Sending Message

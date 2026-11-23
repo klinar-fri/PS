@@ -1,0 +1,18 @@
+(?<host>\S*) (?<clock>{.*})\n(?<event>.*)
+
+Client-hpc-login3.arnes.si-229326 {"Client-hpc-login3.arnes.si-229326":1}
+Initialization Complete
+Client-hpc-login3.arnes.si-229326 {"Client-hpc-login3.arnes.si-229326":2}
+INFO Sending Message
+Client-hpc-login3.arnes.si-229326 {"Client-hpc-login3.arnes.si-229326":3, "Server":4}
+INFO Received Message from server
+Client-hpc-login3.arnes.si-229326 {"Client-hpc-login3.arnes.si-229326":4, "Server":4}
+INFO Client finished
+Server {"Server":1}
+Initialization Complete
+Server {"Client-hpc-login3.arnes.si-229326":2, "Server":2}
+INFO Received Message from client
+Server {"Client-hpc-login3.arnes.si-229326":2, "Server":3}
+INFO Server preparing reply
+Server {"Client-hpc-login3.arnes.si-229326":2, "Server":4}
+INFO Sending Message

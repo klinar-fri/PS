@@ -1,0 +1,8 @@
+Client-hpc-login3.arnes.si-229326 {"Client-hpc-login3.arnes.si-229326":1}
+Initialization Complete
+Client-hpc-login3.arnes.si-229326 {"Client-hpc-login3.arnes.si-229326":2}
+INFO Sending Message
+Client-hpc-login3.arnes.si-229326 {"Client-hpc-login3.arnes.si-229326":3, "Server":4}
+INFO Received Message from server
+Client-hpc-login3.arnes.si-229326 {"Client-hpc-login3.arnes.si-229326":4, "Server":4}
+INFO Client finished
