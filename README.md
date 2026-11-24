@@ -4,6 +4,10 @@
 
 ## Kazalo
 
+### Projektna naloga
+
+[Navodila](projektna-naloga/navodila.md) za izdelavo projektne naloge. Rok za oddajo **20. 1. 2027.**
+
 ### Uvod
 
 - Teden 01:
@@ -52,4 +56,4 @@
 - Teden 08:
   - predavanja:
     [merjenje časa](predavanja/12-merjenje-casa/merjenje-casa.md)
-  - vaje:
+  - vaje: [posredovanje sporočil](vaje/07-posredovanje-sporocil/Posredovanje-sporocil.md)
