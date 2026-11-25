@@ -77,7 +77,7 @@ func sendBack(addr *net.UDPAddr) {
 
 func main() {
 	// Preberi argumente
-	idPtr := flag.Int("id", 0, "id procesa")
+	idPtr := flag.Int("id", 1, "id procesa")
 	nProcPtr := flag.Int("N", 5, "število procesov")
 	rootProcIdPtr := flag.Int("rootProcId", 0, "id glavnega procesa (broadcast)")
 	portNumPtr := flag.Int("p", 9000, "izhodiščna vrata")
@@ -94,7 +94,7 @@ func main() {
 
 	// fmt.Println(drugiProcesi)
 	// Izmenjava sporočil
-	if id == 0 {
+	if id == rootId {
 		// naredimo bcast streznik
 		rootAddr, err := net.ResolveUDPAddr("udp", fmt.Sprintf("localhost:%d", rootPort))
 		checkError(err)
